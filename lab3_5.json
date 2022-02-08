@@ -1,0 +1,427 @@
+[
+    {
+        "id": "227fc50a881ae3aa",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "442435dde551e676",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "url": "on",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "5e98256babbbe8e7",
+                "08bc89c34adfe17e"
+            ]
+        ]
+    },
+    {
+        "id": "eaff320713e4707c",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "url": "off",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "88ac8f74ab48a527",
+                "08bc89c34adfe17e"
+            ]
+        ]
+    },
+    {
+        "id": "0b9ea3c9e433e86f",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "url": "blink",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "d43bd71bad94ecef",
+                "ef8c81cd1aab3924"
+            ]
+        ]
+    },
+    {
+        "id": "5e98256babbbe8e7",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 1",
+        "func": "msg.payload = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "7e960248167436a2",
+                "debcf710269c8f13",
+                "d43bd71bad94ecef"
+            ]
+        ]
+    },
+    {
+        "id": "88ac8f74ab48a527",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 0",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "debcf710269c8f13",
+                "d43bd71bad94ecef"
+            ]
+        ]
+    },
+    {
+        "id": "debcf710269c8f13",
+        "type": "rpi-gpio out",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 760,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d43bd71bad94ecef",
+        "type": "http response",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2b8077407fd635fb",
+        "type": "inject",
+        "z": "227fc50a881ae3aa",
+        "name": "Button trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "ef8c81cd1aab3924"
+            ]
+        ]
+    },
+    {
+        "id": "b90d5b8beae08158",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 1",
+        "func": "msg.payload = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 460,
+        "wires": [
+            [
+                "7e63b0b79532be99",
+                "e266bf2d3d70c96f"
+            ]
+        ]
+    },
+    {
+        "id": "6c986831856c64c8",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 0",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 520,
+        "wires": [
+            [
+                "7e63b0b79532be99",
+                "abc61464ae0918fb"
+            ]
+        ]
+    },
+    {
+        "id": "7e63b0b79532be99",
+        "type": "rpi-gpio out",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 960,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f7981a0719395fdb",
+        "type": "delay",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 460,
+        "wires": [
+            [
+                "b90d5b8beae08158"
+            ]
+        ]
+    },
+    {
+        "id": "e266bf2d3d70c96f",
+        "type": "delay",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "6c986831856c64c8"
+            ]
+        ]
+    },
+    {
+        "id": "dc13ec0970f6cfae",
+        "type": "switch",
+        "z": "227fc50a881ae3aa",
+        "name": "loop",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 600,
+        "wires": [
+            [
+                "f7981a0719395fdb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "abc61464ae0918fb",
+        "type": "file in",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "filename": "led_state.txt",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 650,
+        "y": 600,
+        "wires": [
+            [
+                "dc13ec0970f6cfae"
+            ]
+        ]
+    },
+    {
+        "id": "0265b539b0915f47",
+        "type": "file",
+        "z": "227fc50a881ae3aa",
+        "name": "Stop looping",
+        "filename": "led_state.txt",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 470,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08bc89c34adfe17e",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 0",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "0265b539b0915f47"
+            ]
+        ]
+    },
+    {
+        "id": "ef8c81cd1aab3924",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 1",
+        "func": "msg.payload = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "35b2df4207befbe0"
+            ]
+        ]
+    },
+    {
+        "id": "35b2df4207befbe0",
+        "type": "file",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "filename": "led_state.txt",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "f7981a0719395fdb"
+            ]
+        ]
+    },
+    {
+        "id": "7e960248167436a2",
+        "type": "delay",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "320966c4f8c9655c"
+            ]
+        ]
+    },
+    {
+        "id": "320966c4f8c9655c",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "logic 1",
+        "func": "msg.payload = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "debcf710269c8f13"
+            ]
+        ]
+    }
+]
