@@ -1,0 +1,203 @@
+[
+    {
+        "id": "227fc50a881ae3aa",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7e63b0b79532be99",
+        "type": "rpi-gpio out",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "pin": "16",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "pwm",
+        "bcm": true,
+        "x": 600,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d405f54c4ade9944",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "Get LED brightness",
+        "url": "led",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "941e7ae913f192d9"
+            ]
+        ]
+    },
+    {
+        "id": "31c71213f40e3529",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "Set LED brightness",
+        "url": "led",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "1185817e14614014"
+            ]
+        ]
+    },
+    {
+        "id": "66b6cdfc3c275bf6",
+        "type": "http response",
+        "z": "227fc50a881ae3aa",
+        "name": "Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 760,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "941e7ae913f192d9",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "Format",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Access-Control-Allow-Origin': '*',\n};\nmsg.payload = {'level': flow.get('level')};\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "66b6cdfc3c275bf6"
+            ]
+        ]
+    },
+    {
+        "id": "1185817e14614014",
+        "type": "function",
+        "z": "227fc50a881ae3aa",
+        "name": "Set brightness",
+        "func": "flow.set('level', msg.payload.level);\nmsg.payload = flow.get('level');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "941e7ae913f192d9",
+                "7e63b0b79532be99"
+            ]
+        ]
+    },
+    {
+        "id": "63d31320af3a70dd",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "/index",
+        "url": "/index",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "2fde50af0e24b5a6"
+            ]
+        ]
+    },
+    {
+        "id": "2fde50af0e24b5a6",
+        "type": "file in",
+        "z": "227fc50a881ae3aa",
+        "name": "Website",
+        "filename": "/home/pi/SENG2220_Connected_Devices/lab_4/templates/index_node_client.html",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "be1009f0b6491617"
+            ]
+        ]
+    },
+    {
+        "id": "be1009f0b6491617",
+        "type": "http response",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 470,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0db60135b96fa2bc",
+        "type": "http in",
+        "z": "227fc50a881ae3aa",
+        "name": "/jQuery",
+        "url": "/static/jquery.min.js",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "a932027f73ed6ae3"
+            ]
+        ]
+    },
+    {
+        "id": "a932027f73ed6ae3",
+        "type": "file in",
+        "z": "227fc50a881ae3aa",
+        "name": "jQuery",
+        "filename": "/home/pi/SENG2220_Connected_Devices/lab_4/static/jquery.min.js",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "773d858bae0444ef"
+            ]
+        ]
+    },
+    {
+        "id": "773d858bae0444ef",
+        "type": "http response",
+        "z": "227fc50a881ae3aa",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 470,
+        "y": 320,
+        "wires": []
+    }
+]

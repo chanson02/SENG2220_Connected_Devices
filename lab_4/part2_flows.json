@@ -1,0 +1,134 @@
+[
+    {
+        "id": "2970fc7cf20551f2",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "539bfbd17d11649a",
+        "type": "inject",
+        "z": "2970fc7cf20551f2",
+        "name": "GET",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "6ccbcffe6bb483e3"
+            ]
+        ]
+    },
+    {
+        "id": "6ccbcffe6bb483e3",
+        "type": "http request",
+        "z": "2970fc7cf20551f2",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "10.43.2.8:5000/led",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 80,
+        "wires": [
+            [
+                "cb2e7aed8dec19f0"
+            ]
+        ]
+    },
+    {
+        "id": "cb2e7aed8dec19f0",
+        "type": "debug",
+        "z": "2970fc7cf20551f2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "1c2888c1a0d61f3e",
+        "type": "inject",
+        "z": "2970fc7cf20551f2",
+        "name": "POST",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "607479c504d4fee7"
+            ]
+        ]
+    },
+    {
+        "id": "8b028667d0083ef6",
+        "type": "http request",
+        "z": "2970fc7cf20551f2",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "10.43.2.8:5000/led",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "cb2e7aed8dec19f0"
+            ]
+        ]
+    },
+    {
+        "id": "607479c504d4fee7",
+        "type": "function",
+        "z": "2970fc7cf20551f2",
+        "name": "Format",
+        "func": "msg.headers = { 'Content-Type': 'application/json' };\nmsg.payload = { 'level': 0 }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "8b028667d0083ef6"
+            ]
+        ]
+    }
+]
